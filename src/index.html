@@ -3,11 +3,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <script type="module" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script type="module" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="./CSS_files/index.css">
-        <script type="module" src="./JS_files/index.js"></script>
+        <script src="./JS_files/index.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -28,12 +28,12 @@
                     <li class="pre-profile-1 pt-2 pb-2"><a href="#/" class="color" style="font-weight:600">Order History</a></li>
                     <li class="pre-profile-1 pt-2 pb-2"><a href="#/" class="color" style="font-weight:600">Change Password</a></li>
                     <li class="pre-profile-1 pt-2 pb-2"><a href="#/" class="color" style="font-weight:600">Update Profile</a></li>
-                    <li class="pre-profile-1 pt-2 pb-2"><a href="login-form.html" class="color" style="font-weight:600">Log In</a></li>
+                    <li class="pre-profile-1 pt-2 pb-2"><a href="/src/login-form.html" class="color" style="font-weight:600">Log In</a></li>
                   </ul>
                   <span class="menu-1"><a href="index.html" class="color">home</a></span>
-                  <span class="menu"><a href="ecommerce-price-men.html" class="color">products</a></span>
-                  <span class="menu"><a href="about-us.html" class="color">about</a></span>
-                  <span class="menu"><a href="contact-form.html" class="color">contact</a></span>
+                  <span class="menu"><a href="/src/ecommerce-price-men.html" class="color">products</a></span>
+                  <span class="menu"><a href="/src/about-us.html" class="color">about</a></span>
+                  <span class="menu"><a href="/src/contact-form.html" class="color">contact</a></span>
                   <span class="menu-bar text-right"><a href="#/" class="color">&#9776;</a></span>
                   <span class="menu-bar-1 text-right"><a href="#/" class="color">&#9776;</a></span>
                   <span class="menu-bar-2 text-right"><a href="#/" class="color">&#9776;</a></span>
@@ -362,19 +362,24 @@
     </div>
   </div>
 </div>
-          <script type="module" src="https://unpkg.com/aos@next/dist/aos.js"></script>
-          <script>
-            AOS.init({
-              once:true,
-              duration:1000,
-            });
-          /* const parallax1 =document.getElementById('parallax1');
-          const parallax2 =document.getElementById('parallax2');
-          window.addEventListener("scroll",function(){
-            let offset = window.pageYOffset;
-            parallax1.style.backgroundPositionY = offset * 0.4 + 'px';
-            parallax2.style.backgroundPositionY = offset * 0.9 + 'px';
-          });*/
-        </script>
+            <!-- Your custom JS (ecommerce-price-men.js) -->
+  <script src="./JS_files/ecommerce-price-men.js"></script>
+
+  <!-- AOS JS loaded normally -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+  <!-- Now we use a module only to initialize AOS -->
+  <script type="module">
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.AOS) {
+        window.AOS.init({
+          once: true,
+          duration: 1000,
+        });
+      } else {
+        console.error('AOS not loaded');
+      }
+    });
+  </script>
     </body>
 </html>
