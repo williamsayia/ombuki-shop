@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Studio44 - Payment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="CSS_files/payment.css">
+    <style>
+        /* Additional styles to ensure proper layout */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        #change-color {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card {
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+        }
+        .menu, .menu-1 {
+            margin: 0 15px;
+        }
+        .color {
+            color: #333;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="container-fluid text-white" id="change-color">
+        <div class="row" id="top-containt">
+            <div class="col-4 text-center">
+                <a href="login-ecommerce.html"><img src="Images/studio.png" height="130px" class="color logo-1 logo-sift"></a>
+                <div class="small-devices-logo"><a href="login-ecommerce.html"><img src="Images/pinterest_icon.png" height="70px" class="color logo-2 mt-1 ml-2"></a></div>
+            </div>
+            <div class="col-8 pt-4 mt-1 text-center">
+                <span class="dropdown dropdown-toggle profile" data-toggle="dropdown" style="color:black">
+                    <a href="#/"><img src="Images/profile-icon.png" class="profile-icon color"></a>
+                </span>
+                <ul class="dropdown-menu mt-4 text-center" style="margin-left:-6%;border-radius:10px;">
+                    <li class="pre-profile-1 pt-2 pb-2"><a href="#/" class="color" style="font-weight:600">Help Center</a></li>
+                    <li class="pre-profile-1 pt-2 pb-2"><a href="#/" class="color" style="font-weight:600">Order History</a></li>
+                    <li class="pre-profile-1 pt-2 pb-2"><a href="#/" class="color" style="font-weight:600">Change Password</a></li>
+                    <li class="pre-profile-1 pt-2 pb-2"><a href="#/" class="color" style="font-weight:600">Update Profile</a></li>
+                    <li class="pre-profile-1 pt-2 pb-2"><a href="index.html" class="color" style="font-weight:600">Log In</a></li>
+                </ul>
+                <span class="menu-1"><a href="login-ecommerce.html" class="color">home</a></span>
+                <span class="menu"><a href="Logged_in_product_page.html" class="color">products</a></span>
+                <span class="menu"><a href="logged_in_about_us.html" class="color">about</a></span>
+                <span class="menu"><a href="contact-form.html" class="color">contact</a></span>
+                <span class="menu-bar text-right"><a href="#/" class="color">&#9776;</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="row pt-5">
+            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+                <div id="accordion">
+                    <!-- Delivery Address Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row pt-3">
+                                <div class="col-2 text-center">
+                                    <span style="padding:2% 8%;border:1px solid transparent;background-color: rgb(197, 191, 191);">1</span>
+                                </div>
+                                <div class="col-6">
+                                    <span style="font-size:15px;font-weight:600;color:grey;text-transform: uppercase;">delivery address</span>
+                                    <p>user address</p>
+                                </div>
+                                <div class="col-4 pl-0">
+                                    <button class="btn btn-primary" data-toggle="collapse" data-target="#collapseOne" id="button-hidder" style="text-transform: uppercase;">Change</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="collapseOne" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <!-- Address form content -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row pt-3 pb-3">
+                                <div class="col-2 text-center">
+                                    <span style="padding:2% 8%;border:1px solid transparent;background-color: rgb(197, 191, 191);">2</span>
+                                </div>
+                                <div class="col-10">
+                                    <span style="font-size:15px;font-weight:600;color:grey;text-transform: uppercase;">Order Summary</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="collapseTwo" class="collapse">
+                            <div class="card-body">
+                                <!-- Order items content -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Options Section -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row pt-3 pb-3">
+                                <div class="col-2 text-center">
+                                    <span style="padding:2% 8%;border:1px solid transparent;background-color: rgb(197, 191, 191);">3</span>
+                                </div>
+                                <div class="col-10">
+                                    <span style="font-size:15px;font-weight:600;color:grey;text-transform: uppercase;">Payment Options</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col pl-4 pb-3">
+                                    <input type="radio" name="payment-method" id="mpesa-option">&nbsp;&nbsp;&nbsp;
+                                    <img src="Images/mpesa.png" style="height:30px;"> MPESA
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col pl-4 pb-3">
+                                    <input type="radio" name="payment-method" id="stripe-option">&nbsp;&nbsp;&nbsp;
+                                    <img src="https://cdn.worldvectorlogo.com/logos/stripe-4.svg" style="height:30px;"> Credit/Debit Card
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col pl-4">
+                                    <input type="radio" name="payment-method" id="cash-option">&nbsp;&nbsp;&nbsp;Cash on Delivery
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary Sidebar -->
+            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 mt-3 pt-4">
+                <div class="card">
+                    <div class="card-header">PRICE DETAILS</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col text-left">Price(3):</div>
+                            <div class="col text-right">Ksh 14,500</div>
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col-7 text-left">Delivery Charges:</div>
+                            <div class="col text-right">Free</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col text-left">Total Amount:</div>
+                            <div class="col text-right">Ksh 14,500</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modals -->
+    <!-- MPESA Modal -->
+    <div class="modal fade" id="mpesaModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">MPESA Payment</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="mpesaForm">
+                        <div class="form-group">
+                            <label>Phone Number (2547XXXXXXXX)</label>
+                            <input type="tel" id="mpesaPhone" class="form-control" pattern="254[0-9]{9}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Amount (KES)</label>
+                            <input type="text" id="mpesaAmount" class="form-control" value="14500" readonly>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Initiate Payment</button>
+                    </form>
+                    <div id="mpesaFeedback" class="mt-3" style="display:none;">
+                        <div class="alert alert-info">
+                            <p id="mpesaStatus">Processing payment request...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stripe Modal -->
+    <div class="modal fade" id="stripeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Card Payment</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="stripeForm">
+                        <div id="card-element" class="form-control" style="height: 40px; padding: 10px;"></div>
+                        <div id="card-errors" role="alert" class="text-danger mt-2"></div>
+                        <button type="submit" class="btn btn-primary mt-3">Pay KES 14,500</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="container-fluid bg-dark text-white mt-5">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <h5 class="text-uppercase font-weight-bold">studio44</h5>
+                    <p>We bring together a wide variety of clothing for men, women, and kids, featuring both local and international brands — all in one place</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 mb-4">
+                    <h5 class="text-uppercase font-weight-bold">Products</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">LOUIS VUITTON</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Material Kit</a></li>
+                        <li><a href="#" class="text-white text-decoration-none"> GUCCI</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">PRADA</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <h5 class="text-uppercase font-weight-bold">Useful Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Our Accounts</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Help</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <h5 class="text-uppercase font-weight-bold">Contact</h5>
+                    <p><i class="fa fa-home me-2"></i> Machakos, around KCB Bank, Kenya</p>
+                    <p><i class="fa fa-envelope me-2"></i> studio44@gmail.com</p>
+                    <p><i class="fa fa-phone me-2"></i> +254 123 456 789</p>
+                    <p><i class="fa fa-print me-2"></i> +254 723 456 789</p>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="row align-items-center pb-3">
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    <p class="mb-0">© 2024 Copyright: <span class="font-weight-semibold">Ombuki Moses</span></p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white me-3"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fa fa-google-plus"></i></a>
+                    <a href="#" class="text-white"><i class="fa fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="JS_files/payment.js"></script>
+
+    <script>
+        // Initialize payment methods
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Stripe
+            const stripe = Stripe('pk_test_your_publishable_key');
+            const elements = stripe.elements();
+            const cardElement = elements.create('card');
+            cardElement.mount('#card-element');
+
+            // Payment method selection
+            document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.id === 'mpesa-option') {
+                        $('#mpesaModal').modal('show');
+                    } else if (this.id === 'stripe-option') {
+                        $('#stripeModal').modal('show');
+                    } else if (this.id === 'cash-option') {
+                        if (confirm('Confirm cash on delivery for your order?')) {
+                            // Process cash order
+                        }
+                    }
+                });
+            });
+
+            // MPESA form submission
+            document.getElementById('mpesaForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const phone = document.getElementById('mpesaPhone').value;
+                const amount = document.getElementById('mpesaAmount').value;
+                
+                // Here you would call your backend to process MPESA payment
+                console.log(`Initiating MPESA payment of ${amount} to ${phone}`);
+                
+                // Simulate payment processing
+                document.getElementById('mpesaFeedback').style.display = 'block';
+                document.getElementById('mpesaStatus').textContent = 'Payment request sent to your phone';
+                
+                // In a real implementation, you would check payment status
+                setTimeout(() => {
+                    window.location.href = 'order_confirmation.html';
+                }, 3000);
+            });
+
+            // Stripe form submission
+            document.getElementById('stripeForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const submitButton = document.querySelector('#stripeForm button[type="submit"]');
+                submitButton.disabled = true;
+                
+                const {error, paymentMethod} = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: cardElement
+                });
+
+                if (error) {
+                    document.getElementById('card-errors').textContent = error.message;
+                    submitButton.disabled = false;
+                } else {
+                    // Here you would send paymentMethod.id to your server
+                    console.log('PaymentMethod:', paymentMethod.id);
+                    
+                    // Simulate successful payment
+                    setTimeout(() => {
+                        window.location.href = 'order_confirmation.html';
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

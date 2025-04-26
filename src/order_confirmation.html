@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order Confirmation - Studio44</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="CSS_files/payment.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .confirmation-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .confirmation-icon {
+            font-size: 80px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .order-details {
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            margin: 20px 0;
+        }
+        .btn-continue {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section (Same as payment page) -->
+    <div class="container-fluid text-white" id="change-color">
+        <div class="row" id="top-containt">
+            <div class="col-4 text-center">
+                <a href="login-ecommerce.html"><img src="Images/studio.png" height="130px" class="color logo-1 logo-sift"></a>
+                <div class="small-devices-logo"><a href="login-ecommerce.html"><img src="Images/pinterest_icon.png" height="70px" class="color logo-2 mt-1 ml-2"></a></div>
+            </div>
+            <div class="col-8 pt-4 mt-1 text-center">
+                <span class="dropdown dropdown-toggle profile" data-toggle="dropdown" style="color:black">
+                    <a href="#/"><img src="Images/profile-icon.png" class="profile-icon color"></a>
+                </span>
+                <ul class="dropdown-menu mt-4 text-center" style="margin-left:-6%;border-radius:10px;">
+                    <li class="pre-profile-1 pt-2 pb-2"><a href="#/" class="color" style="font-weight:600">Help Center</a></li>
+                    <li class="pre-profile-1 pt-2 pb-2"><a href="order_history.html" class="color" style="font-weight:600">Order History</a></li>
+                </ul>
+                <span class="menu-1"><a href="login-ecommerce.html" class="color">home</a></span>
+                <span class="menu"><a href="Logged_in_product_page.html" class="color">products</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Content -->
+    <div class="container">
+        <div class="confirmation-container text-center">
+            <div class="confirmation-icon">
+                <i class="fa fa-check-circle"></i>
+            </div>
+            <h2>Order Confirmed!</h2>
+            <p class="text-muted">Thank you for your purchase. Your order has been received.</p>
+            
+            <div class="order-details text-left">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Order Information</h5>
+                        <p><strong>Order Number:</strong> <span id="order-number">ST44-<script>document.write(new Date().getTime())</script></span></p>
+                        <p><strong>Date:</strong> <span id="order-date"><script>document.write(new Date().toLocaleDateString())</script></span></p>
+                        <p><strong>Payment Method:</strong> <span id="payment-method">MPESA</span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Delivery Address</h5>
+                        <p id="delivery-address">user address</p>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mt-4">Order Summary</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pink Saree</td>
+                        <td>Ksh 5500.00</td>
+                        <td>1</td>
+                        <td>Ksh 5500.00</td>
+                    </tr>
+                    <tr>
+                        <td>Indian Traditional Dress</td>
+                        <td>Ksh 3500.00</td>
+                        <td>1</td>
+                        <td>Ksh 3500.00</td>
+                    </tr>
+                    <tr>
+                        <td>Black Design Saree</td>
+                        <td>Ksh 5500.00</td>
+                        <td>1</td>
+                        <td>Ksh 5500.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3">Subtotal</th>
+                        <th>Ksh 14,500.00</th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Delivery</th>
+                        <th>Free</th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Total</th>
+                        <th>Ksh 14,500.00</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="mt-4">
+                <p>We've sent a confirmation email with these details to your registered email address.</p>
+                <a href="Logged_in_product_page.html" class="btn-continue">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="container-fluid bg-dark text-white mt-5">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <h5 class="text-uppercase font-weight-bold">studio44</h5>
+                    <p>We bring together a wide variety of clothing for men, women, and kids, featuring both local and international brands — all in one place</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 mb-4">
+                    <h5 class="text-uppercase font-weight-bold">Products</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">LOUIS VUITTON</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Material Kit</a></li>
+                        <li><a href="#" class="text-white text-decoration-none"> GUCCI</a></li>
+                       <li><a href="#" class="text-white text-decoration-none">PRADA</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <h5 class="text-uppercase font-weight-bold">Useful Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Our Accounts</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Help</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <h5 class="text-uppercase font-weight-bold">Contact</h5>
+                    <p><i class="fa fa-home me-2"></i> Machakos, around KCB Bank, Kenya</p>
+                    <p><i class="fa fa-envelope me-2"></i> studio44@gmail.com</p>
+                    <p><i class="fa fa-phone me-2"></i> +254 123 456 789</p>
+                    <p><i class="fa fa-print me-2"></i> +254 723 456 789</p>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="row align-items-center pb-3">
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    <p class="mb-0">© 2024 Copyright: <span class="font-weight-semibold">Ombuki Moses</span></p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    
+                    <a href="#" class="text-white me-3"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fa fa-google-plus"></i></a>
+                    <a href="#" class="text-white"><i class="fa fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script>
+        // Get order details from URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentMethod = urlParams.get('payment_method') || 'MPESA';
+            const orderId = urlParams.get('order_id') || '';
+            
+            // Update displayed information
+            document.getElementById('payment-method').textContent = paymentMethod;
+            if (orderId) {
+                document.getElementById('order-number').textContent = orderId;
+            }
+            
+            // In a real implementation, you would fetch order details from your backend
+            // fetchOrderDetails(orderId);
+        });
+        
+        // Example function to fetch order details from backend
+        function fetchOrderDetails(orderId) {
+            fetch(`/.netlify/functions/get-order?id=${orderId}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update the page with real order data
+                    document.getElementById('delivery-address').textContent = data.address;
+                    // Update order items, etc.
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

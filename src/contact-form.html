@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./CSS_files/contact-form.css">
+</head>
+<body style="background-image:url('Images/login-background.jpg');background-size:cover;background-attachment:fixed;">
+  <div class="container py-5">
+    <div class="card mx-auto" style="max-width:600px;">
+      <div class="card-body p-4">
+        <h2 class="text-center mb-4">Contact Us</h2>
+        
+        <!-- PRIMARY FORM (Netlify) -->
+        <form name="contact" method="POST" netlify data-netlify="true" netlify-honeypot="bot-field" class="needs-validation" novalidate>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="d-none">
+            <label>Don't fill this out: <input name="bot-field"></label>
+          </p>
+          
+          <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="Full Name" required>
+            <div class="invalid-feedback">Please enter your name</div>
+          </div>
+          
+          <div class="form-group">
+            <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
+            <div class="invalid-feedback">Please enter a valid phone number</div>
+          </div>
+          
+          <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+            <div class="invalid-feedback">Please enter a valid email</div>
+          </div>
+          
+          <div class="form-group">
+            <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required></textarea>
+            <div class="invalid-feedback">Please enter your message</div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        </form>
+        
+        <!-- FALLBACK FORM (If Netlify fails) -->
+        <form id="fallback-form" class="d-none" action="https://formsubmit.co/issalikhiti@gmail.com" method="POST">
+          <input type="hidden" name="_next" value="https://stellar-pithivier-1497ec.netlify.app/thank-you">
+          <input type="hidden" name="_subject" value="New Contact Form Submission">
+          <input type="text" name="name">
+          <input type="tel" name="phone">
+          <input type="email" name="email">
+          <textarea name="message"></textarea>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Form Validation Script -->
+  <script>
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all forms we want to apply custom validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      
+      // Loop over them and prevent submission
+      Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+          
+          // If form is valid, handle submission
+          if (form.checkValidity()) {
+            event.preventDefault();
+            handleFormSubmission(form);
+          }
+        }, false);
+      });
+    }, false);
+    
+    function handleFormSubmission(form) {
+      // Try Netlify submission first
+      const netlifyForm = document.forms['contact'];
+      
+      // Create hidden iframe for Netlify form submission
+      const iframe = document.createElement('iframe');
+      iframe.name = 'netlify-form-iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      
+      netlifyForm.target = 'netlify-form-iframe';
+      
+      // Submit to Netlify
+      netlifyForm.submit();
+      
+      // Set timeout to check if Netlify submission worked
+      setTimeout(function() {
+        // If still on same page after 2 seconds, use fallback
+        if (window.location.href.indexOf('contact') > -1) {
+          submitFallbackForm();
+        }
+      }, 2000);
+    }
+    
+    function submitFallbackForm() {
+      // Transfer values to fallback form
+      const netlifyForm = document.forms['contact'];
+      const fallbackForm = document.getElementById('fallback-form');
+      
+      fallbackForm.querySelector('[name="name"]').value = netlifyForm.elements['name'].value;
+      fallbackForm.querySelector('[name="phone"]').value = netlifyForm.elements['phone'].value;
+      fallbackForm.querySelector('[name="email"]').value = netlifyForm.elements['email'].value;
+      fallbackForm.querySelector('[name="message"]').value = netlifyForm.elements['message'].value;
+      
+      // Submit fallback form
+      fallbackForm.submit();
+    }
+  })();
+  </script>
+</body>
+</html>

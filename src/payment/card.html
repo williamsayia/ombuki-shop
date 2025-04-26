@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Card Payment</title>
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    :root {
+      --primary-color: #6772e5; /* Stripe purple */
+      --secondary-color: #24b47e;
+      --dark-color: #32325d;
+      --light-color: #f8f9fa;
+      --danger-color: #fa755a;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f6f9fc;
+      color: var(--dark-color);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    h2 {
+      color: var(--dark-color);
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--primary-color);
+    }
+    
+    #payment-form {
+      margin-top: 20px;
+    }
+    
+    .card-element-container {
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .card-element {
+      padding: 15px;
+      border: 1px solid #e1e8ee;
+      border-radius: var(--border-radius);
+      background: white;
+      box-shadow: 0 1px 3px rgba(50, 50, 93, 0.05);
+      transition: var(--transition);
+    }
+    
+    .card-element:hover {
+      box-shadow: 0 2px 5px rgba(50, 50, 93, 0.1);
+    }
+    
+    .card-element.StripeElement--focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 1px var(--primary-color);
+    }
+    
+    .card-element.StripeElement--invalid {
+      border-color: var(--danger-color);
+    }
+    
+    .card-element.StripeElement--complete {
+      border-color: var(--secondary-color);
+    }
+    
+    #card-errors {
+      color: var(--danger-color);
+      font-size: 14px;
+      margin: 10px 0 20px;
+      min-height: 20px;
+      padding: 8px 12px;
+      background-color: rgba(250, 117, 90, 0.1);
+      border-radius: var(--border-radius);
+      display: none;
+      animation: fadeIn 0.3s ease-out;
+    }
+    
+    #card-errors.show {
+      display: block;
+    }
+    
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    button:hover {
+      background-color: #5469d4;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(50, 50, 93, 0.15);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    button:disabled {
+      background-color: #aab7c4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .button-text {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .payment-success {
+      text-align: center;
+      padding: 20px;
+      display: none;
+    }
+    
+    .payment-success.show {
+      display: block;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .success-icon {
+      color: var(--secondary-color);
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+    
+    .payment-amount {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 15px 0;
+      color: var(--dark-color);
+    }
+    
+    @media (max-width: 576px) {
+      .container {
+        padding: 20px;
+        margin: 20px auto;
+      }
+      
+      h2 {
+        font-size: 22px;
+      }
+    }
+    
+    /* Payment method icons */
+    .card-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .card-icon {
+      width: 40px;
+      height: 25px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.6;
+      transition: var(--transition);
+    }
+    
+    .card-icon:hover {
+      opacity: 1;
+    }
+    
+    .visa { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg'); }
+    .mastercard { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mastercard/mastercard-original.svg'); }
+    .amex { background-image: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/americanexpress/americanexpress-original.svg'); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Secure Card Payment</h2>
+    
+    <div class="card-icons">
+      <div class="card-icon visa" title="Visa"></div>
+      <div class="card-icon mastercard" title="Mastercard"></div>
+      <div class="card-icon amex" title="American Express"></div>
+    </div>
+    
+    <form id="payment-form">
+      <div class="card-element-container">
+        <div id="card-element" class="card-element"></div>
+      </div>
+      <div id="card-errors" role="alert"></div>
+      <button id="submit-button">
+        <span class="button-text">Pay KES 14,500</span>
+      </button>
+    </form>
+    
+    <div class="payment-success" id="payment-success">
+      <div class="success-icon">✓</div>
+      <h3>Payment Successful!</h3>
+      <div class="payment-amount">KES 14,500</div>
+      <p>Your transaction has been completed successfully.</p>
+    </div>
+  </div>
+
+  <script>
+    const stripe = Stripe('pk_test_your_publishable_key');
+    const elements = stripe.elements();
+    
+    // Custom styling for card element
+    const style = {
+      base: {
+        color: '#32325d',
+        fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+    
+    const cardElement = elements.create('card', { style: style });
+    cardElement.mount('#card-element');
+
+    const form = document.getElementById('payment-form');
+    const cardErrors = document.getElementById('card-errors');
+    const submitButton = document.getElementById('submit-button');
+    const buttonText = submitButton.querySelector('.button-text');
+    const paymentSuccess = document.getElementById('payment-success');
+
+    // Real-time validation
+    cardElement.on('change', (event) => {
+      if (event.error) {
+        cardErrors.textContent = event.error.message;
+        cardErrors.classList.add('show');
+      } else {
+        cardErrors.textContent = '';
+        cardErrors.classList.remove('show');
+      }
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      
+      // Disable button and show loading state
+      submitButton.disabled = true;
+      buttonText.textContent = 'Processing Payment...';
+      submitButton.insertAdjacentHTML('beforeend', '<span class="loading-spinner"></span>');
+      
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement
+      });
+
+      if (error) {
+        cardErrors.textContent = error.message;
+        cardErrors.classList.add('show');
+        
+        // Re-enable button
+        submitButton.disabled = false;
+        buttonText.textContent = 'Pay KES 14,500';
+        submitButton.querySelector('.loading-spinner').remove();
+      } else {
+        try {
+          const response = await fetch('/.netlify/functions/stripe-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              payment_method_id: paymentMethod.id,
+              amount: 14500,
+              currency: 'kes'
+            })
+          });
+          
+          const result = await response.json();
+          
+          if (result.error) {
+            cardErrors.textContent = result.error;
+            cardErrors.classList.add('show');
+            
+            // Re-enable button
+            submitButton.disabled = false;
+            buttonText.textContent = 'Pay KES 14,500';
+            submitButton.querySelector('.loading-spinner').remove();
+          } else {
+            // Show success message
+            form.style.display = 'none';
+            paymentSuccess.classList.add('show');
+            
+            // Redirect after delay
+            setTimeout(() => {
+              window.location.href = `/order-confirmed.html?payment_id=${result.paymentIntent.id}`;
+            }, 3000);
+          }
+        } catch (err) {
+          cardErrors.textContent = 'Payment failed. Please try again.';
+          cardErrors.classList.add('show');
+          
+          // Re-enable button
+          submitButton.disabled = false;
+          buttonText.textContent = 'Pay KES 14,500';
+          submitButton.querySelector('.loading-spinner').remove();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
